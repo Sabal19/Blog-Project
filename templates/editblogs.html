@@ -1,0 +1,30 @@
+{%extends 'index.html' %}
+
+{%block content %}
+
+{% load static %}
+
+<form method="POST" action="" enctype='multipart/form-data'>  
+    {% csrf_token %}
+  
+    <!-- <label> Author Name </label>         
+    <input type="text" name="author" size="15"/> <br> <br> -->
+    <label> Category</label>         
+    <!-- <input type="text" name="category" size="15"/> <br> <br>   -->
+    <select name="category" class="filter-selectbox">
+        {% for category in categories  %}
+            <option value="{{category.id }}">{{category}}</option>
+        {% endfor %} </select> <br> <br>
+    <label> Title</label>         
+    <input type="text" name="title" size="15"/> <br> <br>
+    <label> Image </label>         
+    <input type="file" name="image">  <br> <br>
+    <p>
+    <label> Content</label>         
+    <input type="text" name="content" size="15"/> <br> <br>
+    </p>
+    <input type="submit" value="Post"/>
+    
+    </form>  
+
+{% endblock %}

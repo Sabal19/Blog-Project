@@ -1,0 +1,23 @@
+{% extends 'index.html' %}
+
+{% block content %}
+
+{% for message in messages %}
+<h3>{{message}}</h3>
+{% endfor %}
+
+<form method="POST" action="login">  
+    {% csrf_token %}
+    <label>Email: </label>
+    
+    <input type="email" id="email" placeholder="Enter Email" name="email"/> <br>    
+    <br> <br>  
+    <label>  Password:  </label>
+   
+    <input type="Password" id="pass" placeholder="Enter Password" name="pass"> <br>   
+    <br> <br>  
+    <!-- <p> <button type="submit" id="login">Login</button></p> -->
+    <input type="submit" value="Login"/>  
+    </form>  
+
+    {% endblock %}

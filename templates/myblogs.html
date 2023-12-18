@@ -1,0 +1,61 @@
+{% extends 'index.html' %}
+{% block content %}
+
+{% load static %}
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css" integrity="sha256-2XFplPlrFClt0bIdPgpz8H7ojnk10H69xRqd9+uTShA=" crossorigin="anonymous" />
+<link rel="stylesheet" href="{% static 'css/profile.css' %}">
+
+<div class="container">
+<div class="row">
+		<div class="col-12">
+			<!-- Page title -->
+			<div class="my-5">
+				<h3>{{current_user.name}}'s Profile</h3>
+				<hr>
+			</div>
+			
+            <ul class="list-unstyled mb-1-9">
+                <!-- <li class="mb-2 mb-xl-3 display-28"><span class="display-26 text-secondary me-2 font-weight-600">Position:</span> Coach</li> -->
+                <li class="mb-2 mb-xl-3 display-28"><span class="display-26 text-secondary me-2 font-weight-600">Full Name:</span>{{current_user.name}}</li>             
+                <li class="mb-2 mb-xl-3 display-28"><span class="display-26 text-secondary me-2 font-weight-600">Email</span>{{current_user.email}}</li>
+                <li class="display-28"><span class="display-26 text-secondary me-2 font-weight-600">Phone:</span> {{current_user.phone}}</li>
+            </ul>
+            <hr>
+
+            <h2 class="my-4">My Blogs</h2>
+<div class="container">
+    
+    <div class="row">
+
+        {% for post in posts reversed %}
+        <div class="col-md-4 mb-4">
+            <div class="card">
+                <img class="card-img-top" src="{{post.image.url}}" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">{{post.title}}</h5>
+                    <p class="card-text">{{post.content| truncatewords:10}}</p>
+                    <!-- <a href="{% url'/postdetail/{{post.id}}' }" class="btn btn-primary">Read More &rarr;</a> -->
+                    <a href="/postdetail/{{post.id}}" class="btn btn-primary">Read More &rarr;</a>
+                    <a href="/deleteblogs/{{post.id}}"><button type="button" class="btn btn-secondary">Delete</button> </a>
+                    <a href="/editblogs/{{post.id}}"><button type="button" class="btn btn-warning">Edit</button> </a>
+                </div>
+             </div>
+             {% for message in messages%}
+                    {{message}}
+                    {% endfor %}
+        </div>
+        {% endfor %}
+    </div>
+</div>
+			
+				
+                
+				</div> 
+		</div>
+	</div>
+	</div>
+
+    {% endblock %}

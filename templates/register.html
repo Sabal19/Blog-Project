@@ -1,0 +1,30 @@
+{% extends 'index.html' %}
+
+{% block content %}
+
+{% for message in messages %}
+<h3>{{message}}</h3>
+{% endfor %}
+
+<form method="POST" action="register">  
+    {% csrf_token %}
+  
+    <label> Full Name </label>         
+    <input type="text" name="fullname" size="15"/> <br> <br>  
+    
+    <label>   
+    Phone :  
+    </label>    
+    <input type="number" name="phone" size="10"/> <br> <br>  
+    Email:  
+    <input type="email" id="email" name="email"/> <br>    
+    <br> <br>  
+    Password:  
+    <input type="Password" id="pass" name="pass"> <br>   
+    <br> <br>  
+    Re-type password:  
+    <input type="Password" id="repass" name="repass"> <br> <br>  
+    <input type="submit" value="Register"/>  
+    </form>  
+
+    {% endblock %}

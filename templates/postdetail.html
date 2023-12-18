@@ -1,0 +1,16 @@
+{%extends 'index.html' %}
+
+{%block content %}
+
+{% load static %}
+
+<h2>{{postshow.title}}</h2>
+<hr>
+<p>
+    <div class="card">
+        <img class="card-img-top" style="height: 500px; display: block; width: 60%;" src="{{postshow.image.url}}" alt="Card image cap">
+        </div>
+</p>
+<p> {{postshow.content}}</p>
+
+{% endblock %}

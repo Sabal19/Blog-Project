@@ -1,0 +1,74 @@
+{% extends 'index.html' %}
+{% block content %}
+
+{% load static %}
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css" integrity="sha256-2XFplPlrFClt0bIdPgpz8H7ojnk10H69xRqd9+uTShA=" crossorigin="anonymous" />
+<link rel="stylesheet" href="{% static 'css/profile.css' %}">
+
+<div class="container">
+<div class="row">
+		<div class="col-12">
+			<!-- Page title -->
+			<div class="my-5">
+				<h3>{{current_user.name}}'s Profile</h3>
+				<hr>
+			</div>
+			<!-- Form START -->
+            <ul class="list-unstyled mb-1-9">
+                <!-- <li class="mb-2 mb-xl-3 display-28"><span class="display-26 text-secondary me-2 font-weight-600">Position:</span> Coach</li> -->
+                <li class="mb-2 mb-xl-3 display-28"><span class="display-26 text-secondary me-2 font-weight-600">Full Name:</span>{{current_user.name}}</li>             
+                <li class="mb-2 mb-xl-3 display-28"><span class="display-26 text-secondary me-2 font-weight-600">Email</span>{{current_user.email}}</li>
+                <li class="display-28"><span class="display-26 text-secondary me-2 font-weight-600">Phone:</span> {{current_user.phone}}</li>
+            </ul>
+			
+					
+
+            <a href="/getposts"><button type="button" class="btn btn-primary btn-lg">Create New Blog Post</button></a>
+				<a href="/myblogs" >	<button type="button" class="btn btn-success btn-lg">My Blogs</button> </a>
+
+
+					<!-- change password -->
+                    <form method="POST" action="userprofile" >
+                        {% csrf_token %}
+					<div class="col-xxl-6">
+						<div class="bg-secondary-soft px-4 py-5 rounded">
+							<div class="row g-3">
+								<h4 class="my-4">Change Password</h4>
+								<!-- Old password -->
+								<div class="col-md-6">
+									<label for="exampleInputPassword1" class="form-label">Old password *</label>
+									<input type="password" class="form-control" id="exampleInputPassword1" name="oldpass">
+								</div>
+								<!-- New password -->
+								<div class="col-md-6">
+									<label for="exampleInputPassword2" class="form-label">New password *</label>
+									<input type="password" class="form-control" id="exampleInputPassword2" name="newpass">
+								</div>
+								<!-- Confirm password -->
+								<div class="col-md-12">
+									<label for="exampleInputPassword3" class="form-label">Confirm Password *</label>
+									<input type="password" class="form-control" id="exampleInputPassword3" name="renewpass">
+								</div>
+                                <input type="submit" class="btn btn-danger btn-lg" value="Reset"/>
+                            
+							</div>
+						</div>
+					</div></form>
+                    {% for message in messages%}
+                    {{message}}
+                    {% endfor %}
+				</div> <!-- Row END -->
+				<!-- button -->
+				<div class="gap-3 d-md-flex justify-content-md-end text-center">
+				<a href="/deleteprofile" >	<button type="button" class="btn btn-danger btn-lg">Delete profile</button> </a>
+				<a href="/updateprofile/{{current_user.id}}"><button type="button" class="btn btn-primary btn-lg">Update profile</button></a>
+				</div>
+			</form> <!-- Form END -->
+		</div>
+	</div>
+	</div>
+
+    {% endblock %}
